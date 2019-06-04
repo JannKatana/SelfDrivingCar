@@ -39,11 +39,21 @@
             pos: self.pos
             size: self.size
 
+<Target>:
+    size: 10,10
+    canvas:
+        Color:
+            rgba: 1,1,0,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
 <Game>:
     car: game_car
     ball1: game_ball1
     ball2: game_ball2
     ball3: game_ball3
+    target: game_target
 
     Car:
         id: game_car
@@ -56,4 +66,7 @@
         center: self.parent.center
     Ball3:
         id: game_ball3
+        center: self.parent.center
+    Target:
+        id: game_target
         center: self.parent.center

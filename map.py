@@ -10,7 +10,7 @@ import time
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
-from kivy.graphics import Color, Ellipse, Line
+from kivy.graphics import Color, Ellipse, Line, Rectangle
 from kivy.config import Config
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
@@ -70,6 +70,9 @@ class Car(Widget):
     signal1 = NumericProperty(0)
     signal2 = NumericProperty(0)
     signal3 = NumericProperty(0)
+    target_x = NumericProperty(0)
+    target_y = NumericProperty(0)
+    target = ReferenceListProperty(target_x, target_y)
 
     def move(self, rotation):
         self.pos = Vector(*self.velocity) + self.pos
@@ -94,6 +97,8 @@ class Ball2(Widget):
     pass
 class Ball3(Widget):
     pass
+class Target(Widget):
+    pass
 
 # Creating the game class
 
@@ -103,6 +108,7 @@ class Game(Widget):
     ball1 = ObjectProperty(None)
     ball2 = ObjectProperty(None)
     ball3 = ObjectProperty(None)
+    target = ObjectProperty(None)
 
     def serve_car(self):
         self.car.center = self.center
@@ -163,6 +169,8 @@ class Game(Widget):
             goal_x = self.width-goal_x
             goal_y = self.height-goal_y
         last_distance = distance
+        print('(%s, %s)' % (goal_x, goal_y))
+        self.target.pos = (goal_x, goal_y)
 
 # Adding the painting tools
 
