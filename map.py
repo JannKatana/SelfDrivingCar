@@ -148,9 +148,9 @@ class Game(Widget):
             last_reward = -1
         else: # otherwise
             self.car.velocity = Vector(6, 0).rotate(self.car.angle)
-            last_reward = -0.2
+            last_reward = 0.5
             if distance < last_distance:
-                last_reward = 0.1
+                last_reward = 1
 
         if self.car.x < 10:
             self.car.x = 10
@@ -169,7 +169,6 @@ class Game(Widget):
             goal_x = self.width-goal_x
             goal_y = self.height-goal_y
         last_distance = distance
-        print('(%s, %s)' % (goal_x, goal_y))
         self.target.pos = (goal_x, goal_y)
 
 # Adding the painting tools
